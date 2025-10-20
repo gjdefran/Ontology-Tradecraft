@@ -17,6 +17,9 @@
   - [Zebra Logic](https://www.youtube.com/watch?v=cOtpB-moIRA)
 
 * **Week 6** [SHACL Validation](https://www.youtube.com/watch?v=alVaKWmiqtU&list=PLDpLIEgKNGbOVAAfiD_28PH18wcktXy3M&index=9) - SHACL basics, node and property shapes, constraint definitions, Jupyter
+  - [Lecture on Ontology Mappings](https://youtu.be/4MPBavNBgnU)
+  - [Lecture on Ontology Engineering Tradecraft](https://youtu.be/gPPKDdli-4Y)
+  - [Late Night Debugging Session](https://youtu.be/TkwIPS-QJQQ)
   - [Due: Project 3 - Ontology Mappings](projects/project-3/README.md)
 
 * **Week 7** [Data Integration with Ontologies]() - ETL, R2RML & OpenRefine, Ontop, SQL vs SPARQL
@@ -47,7 +50,7 @@ In person 1-3:50 on Mondays. Zoom for attending remotely is here (https://buffal
 ## Extra Content
 
   - [MOWL Tutorial](https://github.com/bio-ontology-research-group/MOWL)
-  - [FAIR Cookbook – RDF Conversion](https://faircookbook.elixir-europe.org/content/recipes/interoperability/knowledge_representation/rdf-conversion.html)
+  - [FAIR Cookbook – RDF Conversion](https://faircookbook.elixir-europe.org/content/recipes/interoperability/rdf-conversion.html)
   - [SHACL by Example](https://labra.github.io/SHACL/)
 
 ## Repository Content
