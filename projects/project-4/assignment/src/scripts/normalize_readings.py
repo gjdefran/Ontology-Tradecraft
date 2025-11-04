@@ -153,11 +153,19 @@ df["timestamp"] = df["timestamp"].apply(to_iso8601)
 # -----------------------------
 # Unit normalization
 # -----------------------------
+
 UNIT_MAP = {
     "celsius": "C", "°c": "C", "c": "C",
-    "kilogram": "kg", "kg": "kg",
-    "meter": "m", "m": "m",
+    "fahrenheit": "F", "°f": "F", "f": "F",
+    "kilogram": "kg", "kg": "kg", "kg ": "kg",
+    "meter": "m", "metre": "m", "m": "m", " m ": "m",
+    "psi": "psi", "psi ": "psi",
+    "kpa": "kPa", "kpa ": "kPa"
 }
+orig_unit = df["unit_label"]
+normalized = orig_unit.str.lower().str.strip().map(UNIT_MAP)
+df["unit_label"] = normalized.fillna(orig_unit)
+
 
 # Preserve original unit if we don't have a mapping
 orig_unit = df["unit_label"]
