@@ -116,10 +116,10 @@ df["timestamp"] = df["timestamp"].apply(to_iso8601)
 UNIT_MAP = {
     "celsius": "C", "°c": "C", "c": "C",
     "fahrenheit": "F", "°f": "F", "f": "F",
-    "kilogram": "kg", "kg": "kg", "kg ": "kg",
-    "meter": "m", "metre": "m", "m": "m", " m ": "m",
-    "psi": "psi", "psi ": "psi",
-    "kpa": "kPa", "kpa ": "kPa"
+    "kilogram": "kg", "kg": "kg",
+    "meter": "m", "metre": "m", "m": "m",
+    "psi": "pound per square inch", "psi ": "pound per square inch",
+    "kpa": "kilopascal", "kpa ": "kilopascal"
 }
 orig_unit = df["unit_label"]
 normalized = orig_unit.str.lower().str.strip().map(UNIT_MAP)
