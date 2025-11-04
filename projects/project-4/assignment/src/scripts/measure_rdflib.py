@@ -16,7 +16,7 @@ BASE_DIR = SCRIPT_DIR.parent if SCRIPT_DIR.name == "scripts" else SCRIPT_DIR
 
 # Defaults relative to .../assignment/src/
 DEFAULT_CSV = BASE_DIR / "data" / "readings_normalized.csv"
-DEFAULT_TTL = BASE_DIR / "measure_ccotest.ttl"
+DEFAULT_TTL = BASE_DIR / "measure_cco.ttl"
 
 # --- Allow env vars to override defaults (handy in CI/local) ---
 CSV_ENV = os.environ.get("CSV_PATH")
@@ -442,6 +442,7 @@ for _, row in df.iterrows():
         g.add((reading_uri, RDF.type, qual_class_uri))
     g.add((reading_uri, RDFS.label, Literal(f"{artifact_label}_{canon_kind_label} @ {timestamp_raw}", lang="en")))
     g.add((reading_uri, obo.BFO_0000197, artifact_uri))  # inheres in
+    g.add((artifact_uri, obo.BFO_0000196, reading_uri))
 
     # --- Resolve unit to CCO IRIs and adjust numeric value if needed ---
     unit_uri, value, is_external_unit = resolve_unit_and_value(unit_raw, value)
@@ -489,6 +490,7 @@ g.add((cco.ont00000120, RDFS.subClassOf, obo.BFO_0000031))
 # ----------------------------------------------------------------------------------------------------
 # Final pass: add genus–differentia definitions
 # ----------------------------------------------------------------------------------------------------
+# --- Final pass: add genus–differentia definitions (safe string assembly) ---
 seen_classes = set()
 for c in g.subjects(RDF.type, OWL.Class):
     if isinstance(c, URIRef):
@@ -496,36 +498,25 @@ for c in g.subjects(RDF.type, OWL.Class):
 for _, _, class_iri in g.triples((None, RDF.type, None)):
     if isinstance(class_iri, URIRef):
         seen_classes.add(class_iri)
-for c in seen_classes:
-    if not has_english_definition(c):
-        ensure_clean_definition(c, (
-            (lambda term: (
-                f"{article_for(label_or_localname(term))} {label_or_localname(term)} is a "
-                f"{label_or_localname(parent_of(term)) if parent_of(term) else 'parent class (unspecified)'} that "
-                f"{DIFFERENTIA.get(term, f'has not yet had its differentiating factor specified relative to {label_or_localname(parent_of(term)) if parent_of(term) else 'parent class (unspecified)'}')}.")
-            )(c)
-        ))
 
-seen_object_properties = set()
-for p in g.subjects(RDF.type, OWL.ObjectProperty):
-    if isinstance(p, URIRef):
-        seen_object_properties.add(p)
-for p in seen_object_properties:
-    if not has_english_definition(p):
-        a = label_or_localname(p)
-        cmt = f"{article_for(a)} {a} is an object property that {DIFFERENTIA.get(p, 'has not yet had its differentiating factor specified')} ."
-        ensure_definition(p, cmt)
+for term in seen_classes:
+    if not has_english_definition(term):
 
-seen_datatype_properties = set()
-for p in g.subjects(RDF.type, OWL.DatatypeProperty):
-    if isinstance(p, URIRef):
-        seen_datatype_properties.add(p)
-for p in seen_datatype_properties:
-    if not has_english_definition(p):
-        a = label_or_localname(p)
-        cmt = f"{article_for(a)} {a} is a datatype property that {DIFFERENTIA.get(p, 'has not yet had its differentiating factor specified')} ."
-        ensure_definition(p, cmt)
+        # Pieces
+        term_label = label_or_localname(term)
+        parent = parent_of(term)
+        parent_label = label_or_localname(parent) if parent else "parent class (unspecified)"
 
+        # Default differentia if not in map
+        default_diff = f"has not yet had its differentiating factor specified relative to {parent_label}"
+        diff_text = DIFFERENTIA.get(term, default_diff)
+
+        # Build the sentence
+        article = article_for(term_label)
+        # Example: "A Temperature is a Specifically Dependent Continuant that <diff>."
+        def_text = f"{article} {term_label} is a {parent_label} that {diff_text}."
+
+        ensure_clean_definition(term, def_text)
 # ----------------------------------------------------------------------------------------------------
 # Serialize
 # ----------------------------------------------------------------------------------------------------
