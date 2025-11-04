@@ -3,13 +3,29 @@ import json
 from dateutil import parser as dateparser
 from pathlib import Path
 import datetime
+import os
+import argparse
+# Determine repo root (adjust depth if needed)
+REPO_ROOT = Path(__file__).resolve().parent.parent  # go up one level from script
 
-# -----------------------------
-# Define input/output locations
-# -----------------------------
-IN_A = Path("C:/Users/gregd/Documents/UB/ontology tradecraft/Ontology-Tradecraft/projects/project-4/assignment/src/data/sensor_A.csv")
-IN_B = Path("C:/Users/gregd/Documents/UB/ontology tradecraft/Ontology-Tradecraft/projects/project-4/assignment/src/data/sensor_B.json")
-OUT = Path("C:/Users/gregd/Documents/UB/ontology tradecraft/Ontology-Tradecraft/projects/project-4/assignment/src/data/readings_normalized.csv")
+# Defaults relative to repo
+DEFAULT_IN_A = REPO_ROOT / "src" / "data" / "sensor_A.csv"
+DEFAULT_IN_B = REPO_ROOT / "src" / "data" / "sensor_B.json"
+DEFAULT_OUT = REPO_ROOT / "src" / "data" / "readings_normalized.csv"
+
+# Environment overrides
+env_in_a = os.getenv("IN_A", DEFAULT_IN_A)
+env_in_b = os.getenv("IN_B", DEFAULT_IN_B)
+env_out = os.getenv("OUT", DEFAULT_OUT)
+
+# CLI overrides
+parser = argparse.ArgumentParser()
+parser.add_argument("--in_a", type=Path, default=env_in_a)
+parser.add_argument("--in_b", type=Path, default=env_in_b)
+parser.add_argument("--out", type=Path, default=env_out)
+args = parser.parse_args()
+
+IN_A, IN_B, OUT = args.in_a, args.in_b, args.out
 
 # The data folder to watch for additional CSVs
 DATA_DIR = IN_A.parent

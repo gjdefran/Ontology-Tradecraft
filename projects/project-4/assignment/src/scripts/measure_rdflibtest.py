@@ -4,33 +4,10 @@ from rdflib import Graph, Literal, RDF, URIRef, Namespace
 from rdflib.namespace import XSD, RDFS, OWL
 import re
 from collections import defaultdict
-from pathlib import Path
-import os
-import argparse
 
-# --- Resolve defaults relative to the repository root ---
-# Assume the CSV lives at: <repo>/src/data/readings_normalized.csv
-# and we want TTL at:      <repo>/src/measure_ccotest.ttl
-
-# repo_root = the top-level project directory (2 levels up from this file)
-REPO_ROOT = Path(__file__).resolve().parents[2] if (Path(__file__).resolve().parents[2] / ".git").exists() \
-            else Path(__file__).resolve().parents[1]
-
-DEFAULT_CSV  = REPO_ROOT / "assignment" / "src" / "data" / "readings_normalized.csv"
-DEFAULT_TTL  = REPO_ROOT / "assignment" / "src" / "measure_ccotest.ttl"
-
-# --- Allow env vars to override defaults (handy in CI/CD) ---
-CSV_ENV = os.environ.get("CSV_PATH")
-TTL_ENV = os.environ.get("TTL_OUT")
-
-# --- Allow CLI args to override both (most explicit) ---
-parser = argparse.ArgumentParser(description="Generate TTL from measurements CSV.")
-parser.add_argument("--csv",     default=CSV_ENV or str(DEFAULT_CSV), help="Path to input CSV")
-parser.add_argument("--ttl-out", default=TTL_ENV or str(DEFAULT_TTL), help="Path to output TTL")
-args, unknown = parser.parse_known_args()
-
-CSV_PATH = str(Path(args.csv).expanduser().resolve())
-TTL_OUT  = str(Path(args.ttl_out).expanduser().resolve())
+# === Paths (adjust if needed) ===
+CSV_PATH = r"C:/Users/gregd/Documents/UB/ontology tradecraft/Ontology-Tradecraft/projects/project-4/assignment/src/data/readings_normalizedtest.csv"
+TTL_OUT = r"C:/Users/gregd/Documents/UB/ontology tradecraft/Ontology-Tradecraft/projects/project-4/assignment/src/measure_cco.ttl"
 
 # === Create RDF graph ===
 g = Graph()
