@@ -12,12 +12,12 @@ import argparse
 # Assume the CSV lives at: <repo>/src/data/readings_normalized.csv
 # and we want TTL at:      <repo>/src/measure_ccotest.ttl
 
-# repo_root = the top-level project directory (2 levels up from this file)
-REPO_ROOT = Path(__file__).resolve().parents[2] if (Path(__file__).resolve().parents[2] / ".git").exists() \
-            else Path(__file__).resolve().parents[1]
+# Always resolve relative to this file
+SCRIPT_DIR = Path(__file__).resolve().parent
 
-DEFAULT_CSV  = REPO_ROOT / "assignment" / "src" / "data" / "readings_normalized.csv"
-DEFAULT_TTL  = REPO_ROOT / "assignment" / "src" / "measure_ccotest.ttl"
+# Data/TTL live next to measure_rdflib.py under ...\assignment\src\
+DEFAULT_CSV = SCRIPT_DIR / "data" / "readings_normalized.csv"
+DEFAULT_TTL = SCRIPT_DIR / "measure_ccotest.ttl"
 
 # --- Allow env vars to override defaults (handy in CI/CD) ---
 CSV_ENV = os.environ.get("CSV_PATH")
