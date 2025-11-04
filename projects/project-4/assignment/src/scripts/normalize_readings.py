@@ -6,12 +6,12 @@ import datetime
 import os
 import argparse
 # Determine repo root (adjust depth if needed)
-REPO_ROOT = Path(__file__).resolve().parent.parent  # go up one level from script
+REPO_ROOT = Path(__file__).resolve().parents[2]     # .../assignment
 
 # Defaults relative to repo
 DEFAULT_IN_A = REPO_ROOT / "src" / "data" / "sensor_A.csv"
 DEFAULT_IN_B = REPO_ROOT / "src" / "data" / "sensor_B.json"
-DEFAULT_OUT = REPO_ROOT / "src" / "data" / "readings_normalized.csv"
+DEFAULT_OUT  = REPO_ROOT / "src" / "data" / "readings_normalized.csv"
 
 # Environment overrides
 env_in_a = os.getenv("IN_A", DEFAULT_IN_A)
