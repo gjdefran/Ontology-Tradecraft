@@ -8,29 +8,32 @@ from pathlib import Path
 import os
 import argparse
 
-# --- Resolve defaults relative to the repository root ---
-# Assume the CSV lives at: <repo>/src/data/readings_normalized.csv
-# and we want TTL at:      <repo>/src/measure_ccotest.ttl
-
-# Always resolve relative to this file
+# --- Resolve defaults relative to THIS script's directory ---
+# If this file lives at .../assignment/src/scripts/measure_rdflib.py,
+# then we want BASE_DIR = .../assignment/src (because data/ is a sibling of scripts/)
 SCRIPT_DIR = Path(__file__).resolve().parent
+BASE_DIR = SCRIPT_DIR.parent if SCRIPT_DIR.name == "scripts" else SCRIPT_DIR
 
-# Data/TTL live next to measure_rdflib.py under ...\assignment\src\
-DEFAULT_CSV = SCRIPT_DIR / "data" / "readings_normalized.csv"
-DEFAULT_TTL = SCRIPT_DIR / "measure_ccotest.ttl"
+# Defaults relative to .../assignment/src/
+DEFAULT_CSV = BASE_DIR / "data" / "readings_normalized.csv"
+DEFAULT_TTL = BASE_DIR / "measure_ccotest.ttl"
 
-# --- Allow env vars to override defaults (handy in CI/CD) ---
+# --- Allow env vars to override defaults (handy in CI/local) ---
 CSV_ENV = os.environ.get("CSV_PATH")
 TTL_ENV = os.environ.get("TTL_OUT")
 
-# --- Allow CLI args to override both (most explicit) ---
+# --- CLI args override everything ---
 parser = argparse.ArgumentParser(description="Generate TTL from measurements CSV.")
-parser.add_argument("--csv",     default=CSV_ENV or str(DEFAULT_CSV), help="Path to input CSV")
+parser.add_argument("--csv", default=CSV_ENV or str(DEFAULT_CSV), help="Path to input CSV")
 parser.add_argument("--ttl-out", default=TTL_ENV or str(DEFAULT_TTL), help="Path to output TTL")
 args, unknown = parser.parse_known_args()
 
 CSV_PATH = str(Path(args.csv).expanduser().resolve())
 TTL_OUT  = str(Path(args.ttl_out).expanduser().resolve())
+
+# (Optional) quick sanity prints to help if paths drift:
+print("Resolved CSV_PATH:", CSV_PATH)
+print("Resolved TTL_OUT :", TTL_OUT)
 
 # === Create RDF graph ===
 g = Graph()
@@ -261,7 +264,7 @@ UNIT_ALIASES = {
     "f": {"f", "degf", "fahrenheit", "°f"},
     "pa": {"pa", "pascal"},
     "kpa": {"kpa", "kilopascal", "kilopascals"},
-    "psi": {"psi"},
+    "psi": {"psi", "pound per square inch"},
     "volt": {"v", "volt", "volts"},
     "ohm": {"ohm", "ohms", "ω", "omega"},
 }
