@@ -163,23 +163,18 @@ jobs:
           q_all_mice_ok = f"""
           SELECT (COUNT(DISTINCT ?m) AS ?n_bad)
           WHERE {{
-            {{
-              ?m a <{IRI_MICE}> .
-              # Missing required link: exact 'is measure of' to an SDC
-              FILTER NOT EXISTS {{
+            ?m a <{IRI_MICE}> .
+            FILTER (
+              NOT EXISTS {{
                 ?m <{IRI_IS_MEASURE_OF}> ?sdc .
                 ?sdc a <{IRI_SDC}> .
               }}
-            }}
-            UNION
-            {{
-              ?m a <{IRI_MICE}> .
-              # Missing required link: exact 'uses measurement unit' to a MU
-              FILTER NOT EXISTS {{
+              ||
+              NOT EXISTS {{
                 ?m <{IRI_USES_MU}> ?u .
                 ?u a <{IRI_MU}> .
               }}
-            }}
+            )
           }}
           """
           n_bad = int(list(g.query(q_all_mice_ok))[0][0])
