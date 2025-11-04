@@ -128,6 +128,13 @@ df["unit_label"] = normalized.fillna(orig_unit)
 # Drop rows with missing critical values
 df = df.dropna(subset=CANONICAL_COLS)
 
+# Remove rows with non-numeric values in 'value' (recommended for strict requirement)
+df = df[pd.to_numeric(df['value'], errors='coerce').notna()]
+# Or, raise an explicit error with information for debugging
+non_numeric = df[~pd.to_numeric(df['value'], errors='coerce').notna()]
+if not non_numeric.empty:
+    raise ValueError(f"Non-numeric values in 'value': {non_numeric}")
+
 # Remove duplicates
 df = df.drop_duplicates(subset=CANONICAL_COLS)
 
