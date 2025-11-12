@@ -1,0 +1,84 @@
+@prefix ex: <http://example.org/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc11: <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+#Task 1
+ex:A320_Neo_Spec rdf:type [
+    a owl:Class ;
+    owl:intersectionOf (
+        [ a owl:Restriction ;
+          owl:onProperty ex:is_about ;
+          owl:allValuesFrom [
+              a owl:Class ;
+              owl:intersectionOf (
+                  [ a owl:Restriction ;
+                    owl:onProperty ex:has_continuant_part ;
+                    owl:hasValue ex:Jet_Engine_1
+                  ]
+                  [ a owl:Restriction ;
+                    owl:onProperty ex:has_continuant_part ;
+                    owl:hasValue ex:Jet_Engine_2
+                  ]
+                  [ a owl:Restriction ;
+                    owl:onProperty ex:has_manufacturer ;
+                    owl:hasValue ex:Airbus
+                  ]
+                  [ a owl:Restriction ;
+                  owl:onProperty ex:has_Model_BADA ;
+                  owl:hasValue "Airbus A320-271N"^^xsd:string
+                  ]
+                  [ a owl:Restriction ;
+                  owl:onProperty ex:has_Model_FAA ;
+                  owl:hasValue "Airbus A320 Neo"^^xsd:string
+                  ]
+                  [ a owl:Restriction ;
+                  owl:onProperty ex:has_Length_Ft ;
+                  owl:hasValue "50.2"^^xsd:decimal
+                  ]
+                  [ a owl:Restriction ;
+                  owl:onProperty ex:has_Tail_Height_Ft ;
+                  owl:hasValue "29.4"^^xsd:decimal
+                  ]
+                  ex:Fixed_Wing
+
+              )
+          ]
+        ]
+    )
+] .
+
+ex:A320_Neo_Spec rdf:type ex:Artifact_Design ;
+                 rdfs:label "Airbus A320 NEO"@en .
+
+ex:A320_Neo_Spec a ex:Artifact_Design ;
+    rdfs:label "Airbus A320 NEO"@en ;
+    ex:has_manufacturer ex:Airbus ;
+    ex:has_Model_BADA "Airbus A320-271N"^^xsd:string ;
+    ex:has_Model_FAA "Airbus A320 Neo"^^xsd:string ;
+    ex:has_Length_Ft "50.2"^^xsd:decimal ;
+    ex:has_Tail_Height_Ft "29.4"^^xsd:decimal ;
+    rdfs:subClassOf ex:Artifact_Design ;
+    rdfs:label "Airbus A320 NEO"@en ;
+    ex:has_manufacturer ex:Airbus ;
+    ex:has_Model_BADA "Airbus A320-271N"^^xsd:string ;
+    ex:has_Model_FAA "Airbus A320 Neo"^^xsd:string ;
+    ex:has_Length_Ft "50.2"^^xsd:decimal ;
+    ex:has_Tail_Height_Ft "29.4"^^xsd:decimal ;
+    ex:has_continuant_part ex:Jet_Engine_1 ;
+    ex:has_continuant_part ex:Jet_Engine_2 .
+
+    ex:Jet_Engine_1 rdf:type ex:Jet_Engine .
+    ex:Jet_Engine_2 rdf:type ex:Jet_Engine .
+
+    ex:Airbus rdfs:label "Airbus"@en .
+    ex:has_manufacturer rdfs:label "has manufacturer"@en .
+    
+
+
+

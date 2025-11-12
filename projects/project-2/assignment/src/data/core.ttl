@@ -1,0 +1,68 @@
+@prefix ex: <http://example.org/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dc11: <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+
+#BFO Conformance
+#Artifact Design
+ex:Artifact_Design rdfs:subClassOf obo:BFO_0000002 ;
+                   rdfs:label "Artifact Design"@en ;
+                   skos:definition "An Artifact Design is a generically dependent continuant that is about the design of an artifact."@en .
+
+obo:BFO_0000002 rdfs:label "generically dependent continuant"@en ;
+                skos:definition "(Elucidation) A generically dependent continuant is an entity that exists in virtue of the fact that there is at least one of what may be multiple copies which is the content or the pattern that multiple copies would share"@en .
+
+#Jet Engine
+ex:Jet_Engine rdfs:subClassOf obo:BFO_0000040 ;
+              rdfs:label "Jet Engine"@en ;
+              skos:definition "A Jet Engine is a material entity that powers an Aircraft."@en .
+
+obo:BFO_0000040 rdfs:label "material entity"@en ;
+                skos:definition "(Elucidation) A material entity is an independent continuant that at all times at which it exists has some portion of matter as continuant part"@en .
+
+#Fixed_Wing
+ex:Fixed_Wing rdfs:label "Fixed Wing"@en ;
+              skos:definition "A Fixed Wing Aircraft is a material entity which uses fixed wings in flight."@en .
+
+#has continuant part
+ex:has_continuant_part rdfs:label "has continuant part"@en ;
+                       skos:definition "b has continuant part c =Def c continuant part of b"@en .
+
+#has model BADA 
+ex:has_Model_BADA rdfs:label "has Model BADA"@en ;
+                  skos:definition "b has MODEL BADA c = Def c Model BADA of b"@en .
+
+#has model FAA 
+ex:has_Model_FAA rdfs:label "has Model FAA"@en ;
+                 skos:definition "b has Model FAA c = Def c Model FAA of b"@en .
+
+#has Length Ft 
+ex:has_Length_Ft rdfs:label "has Length Ft"@en ;
+                 skos:definition "b has Length Ft c = Def c Length Ft of B"@en .
+
+#has Tail Height Feet
+ex:has_Tail_Height_Ft rdfs:label "has Tail Height Ft"@en ;
+                      skos:definition "b has Tail Height Ft c = Def c Tail Height Ft of B"@en .
+
+#is about
+ex:is_about rdfs:label "is about"@en ;
+            skos:definition "b is about c = Def b is about c"@en .
+
+#test process
+ex:test_process rdfs:label "Test Process"@en ;
+                skos:definition "A test process is a process that includes the testing of some entity as it's main component"@en ;
+                rdfs:subClassOf obo:BFO_0000015 .
+
+#process
+obo:BFO_0000015 rdfs:label "process"@en ;
+                skos:definition "(Elucidation) p is a process means p is an occurrent that has some temporal proper part and for some time t, p has some material entity as participant"@en .
+
+
+
+
