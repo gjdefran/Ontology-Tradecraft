@@ -8,6 +8,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix cco: <http://commoncoreontologies.org/> .
 
 #BFO Conformance
 #Artifact Design
@@ -63,6 +64,65 @@ ex:test_process rdfs:label "Test Process"@en ;
 obo:BFO_0000015 rdfs:label "process"@en ;
                 skos:definition "(Elucidation) p is a process means p is an occurrent that has some temporal proper part and for some time t, p has some material entity as participant"@en .
 
+#is temporal part of
+obo:BFO_0000139 rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000132> ;
+                 rdf:type owl:TransitiveProperty ;
+                 rdfs:domain <http://purl.obolibrary.org/obo/BFO_0000003> ;
+                 rdfs:range <http://purl.obolibrary.org/obo/BFO_0000003> ;
+                 dc11:identifier "078-BFO" ;
+                 rdfs:label "is temporal part of"@en ;
+                 skos:definition "b temporal part of c =Def b occurrent part of c & (b and c are temporal regions) or (b and c are spatiotemporal regions & b temporally projects onto an occurrent part of the temporal region that c temporally projects onto) or (b and c are processes or process boundaries & b occupies a temporal region that is an occurrent part of the temporal region that c occupies)"@en ;
+                 skos:example "Your heart beating from 4pm to 5pm today is a temporal part of the process of your heart beating; the 4th year of your life is a temporal part of your life, as is the process boundary which separates the 3rd and 4th years of your life; the first quarter of a game of football is a temporal part of the whole game"@en .
 
+#is measurement unit of
+cco:ont00001961 rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf obo:BFO_0000084 ;
+                 rdfs:label "is measurement unit of"@en ;
+                 skos:definition "x is_measurement_unit_of y iff y is an instance of Information Bearing Entity and x is an instance of Measurement Unit, such that x describes the magnitude of measured physical quantity mentioned in y."@en ;
+                 cco:ont00001760 "https://wwsw.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
+#prescribes
+cco:ont00001942 rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf cco:ont00001808 ;
+                 rdfs:label "prescribes"@en ;
+                 skos:definition "x prescribes y iff x is an instance of Information Content Entity and y is an instance of Entity, such that x serves as a rule or guide for y if y an Occurrent, or x serves as a model for y if y is a Continuant."@en ;
+                 skos:example "A blueprint prescribes some artifact or facility by being a model for it." ,
+                              "A professional code of conduct prescribes some realizations of a profession (role) by giving rules for how the bearer should act in those realizations." ,
+                              "An operations plan prescribes an operation by enumerating the tasks that need to be performed in order to achieve the objectives of the operation." ;
+                 cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
+
+#measurement unit
+cco:ont00000120 rdf:type owl:Class ;
+                 rdfs:subClassOf cco:ont00000853 ;
+                 rdfs:label "Measurement Unit"@en ;
+                 skos:definition "A Descriptive Information Content Entity that describes a definite magnitude of a physical quantity, defined and adopted by convention and/or by law, that is used as a standard for measurement of the same physical quantity."@en ;
+                 cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Unit_of_measurement&oldid=1061038125"^^xsd:anyURI ;
+                 cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
+
+#measurement information content entity
+###  https://www.commoncoreontologies.org/ont00001163
+cco:ont00001163 rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( cco:ont00000853
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty cco:ont00001966 ;
+                                                              owl:someValuesFrom obo:BFO_0000001
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                 rdfs:subClassOf cco:ont00000853 ;
+                 rdfs:label "Measurement Information Content Entity"@en ;
+                 skos:altLabel "Measurement ICE"@en ;
+                 skos:definition "A Descriptive Information Content Entity that describes the extent, dimensions, quantity, or quality of an Entity relative to some standard."@en ;
+                 cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
+
+#measurement unit
+###  https://www.commoncoreontologies.org/ont00000120
+cco:ont00000120 rdf:type owl:Class ;
+                 rdfs:subClassOf cco:ont00000853 ;
+                 rdfs:label "Measurement Unit"@en ;
+                 skos:definition "A Descriptive Information Content Entity that describes a definite magnitude of a physical quantity, defined and adopted by convention and/or by law, that is used as a standard for measurement of the same physical quantity."@en ;
+                 cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Unit_of_measurement&oldid=1061038125"^^xsd:anyURI ;
+                 cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 

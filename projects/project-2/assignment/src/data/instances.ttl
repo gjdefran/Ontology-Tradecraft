@@ -7,6 +7,8 @@
 @prefix dc11: <http://purl.org/dc/elements/1.1/> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix cco: <http://commoncoreontologies.org/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
 
 #Task 1
 ex:A320_Neo_Spec rdf:type [
@@ -78,7 +80,54 @@ ex:A320_Neo_Spec a ex:Artifact_Design ;
 
     ex:Airbus rdfs:label "Airbus"@en .
     ex:has_manufacturer rdfs:label "has manufacturer"@en .
-    
+
+#Task 2
+ex:Airbus_A321-111 rdf:type ex:Artifact_Design ;
+                  rdfs:label "Airbus A321-111"@en ;
+                  cco:ont00001942 ex:Maximum_Knot_Approach_Speed .
+
+ex:Maximum_Knot_Approach_Speed rdf:type cco:ont00001163 ;
+                               ex:has_value "142"^^xsd:integer .
+
+ex:Knot_Measurement_Unit rdf:type cco:ont00000120 ;
+                         rdfs:label "Knot Measurement Unit"@en ;
+                         cco:ont00001961 ex:Maximum_Knot_Approach_Speed .
+
+ex:test_process_0 rdfs:label "Test Process"@en ;
+                skos:definition "A test process is a process that includes the testing of some entity as it's main component"@en ;
+                rdf:type ex:test_process .
+
+ex:test_process_part_1 rdf:type obo:BFO_0000015 ;
+                       rdfs:label "test process part 1"@en ;
+                       skos:definition "the first process part of the process."@en ;
+                       ex:has_value "138.4"^^xsd:decimal ;
+                       obo:BFO_0000139 ex:test_process_0 .
+
+ex:test_process_part_2 rdf:type obo:BFO_0000015 ;
+                       rdfs:label "test process part 2"@en ;
+                       skos:definition "the second process part of the process."@en ;
+                       ex:has_value "139.6"^^xsd:decimal ;
+                       obo:BFO_0000139 ex:test_process_0 .
+
+ex:test_process_part_3 rdf:type obo:BFO_0000015 ;
+                       rdfs:label "test process part 3"@en ;
+                       skos:definition "the third process part of the process."@en ;
+                       ex:has_value "139.2"^^xsd:decimal ;
+                       obo:BFO_0000139 ex:test_process_0 .
+
+ex:test_process_part_4 rdf:type obo:BFO_0000015 ;
+                       rdfs:label "test process part 4"@en ;
+                       skos:definition "the fourth process part of the process."@en ;
+                       ex:has_value "138.8"^^xsd:decimal ;
+                       obo:BFO_0000139 ex:test_process_0 .
+
+ex:test_process_part_5 rdf:type obo:BFO_0000015 ;
+                       rdfs:label "test process part 5"@en ;
+                       skos:definition "the fifth process part of the process."@en ;
+                       ex:has_value "139.0"^^xsd:decimal ;
+                       obo:BFO_0000139 ex:test_process_0 .
+
+
 
 
 
