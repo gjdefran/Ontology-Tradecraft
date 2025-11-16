@@ -126,3 +126,65 @@ cco:ont00000120 rdf:type owl:Class ;
                  cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Unit_of_measurement&oldid=1061038125"^^xsd:anyURI ;
                  cco:ont00001760 "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
 
+#bearer of
+###  http://purl.obolibrary.org/obo/BFO_0000196
+<http://purl.obolibrary.org/obo/BFO_0000196> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000194> ;
+                                             owl:inverseOf <http://purl.obolibrary.org/obo/BFO_0000197> ;
+                                             rdfs:domain [ owl:intersectionOf ( <http://purl.obolibrary.org/obo/BFO_0000004>
+                                                                                [ rdf:type owl:Class ;
+                                                                                  owl:complementOf <http://purl.obolibrary.org/obo/BFO_0000006>
+                                                                                ]
+                                                                              ) ;
+                                                           rdf:type owl:Class
+                                                         ] ;
+                                             rdfs:range <http://purl.obolibrary.org/obo/BFO_0000020> ;
+                                             dc11:identifier "053-BFO" ;
+                                             rdfs:label "bearer of"@en ;
+                                             skos:definition "b bearer of c =Def c inheres in b"@en ;
+                                             skos:example "A patch of ink is the bearer of a colour quality; an organism is the bearer of a temperature quality"@en .
+
+#inheres in
+###  http://purl.obolibrary.org/obo/BFO_0000197
+<http://purl.obolibrary.org/obo/BFO_0000197> rdf:type owl:ObjectProperty ;
+                                             rdfs:subPropertyOf <http://purl.obolibrary.org/obo/BFO_0000195> ;
+                                             rdfs:domain <http://purl.obolibrary.org/obo/BFO_0000020> ;
+                                             rdfs:range [ owl:intersectionOf ( <http://purl.obolibrary.org/obo/BFO_0000004>
+                                                                               [ rdf:type owl:Class ;
+                                                                                 owl:complementOf <http://purl.obolibrary.org/obo/BFO_0000006>
+                                                                               ]
+                                                                             ) ;
+                                                          rdf:type owl:Class
+                                                        ] ;
+                                             dc11:identifier "051-BFO" ;
+                                             rdfs:label "inheres in"@en ;
+                                             skos:definition "b inheres in c =Def b is a specifically dependent continuant & c is an independent continuant that is not a spatial region & b specifically depends on c"@en ;
+                                             skos:example "A shape inheres in a shaped object; a mass inheres in a material entity"@en .
+
+#participates in
+###  http://purl.obolibrary.org/obo/BFO_0000056
+<http://purl.obolibrary.org/obo/BFO_0000056> rdf:type owl:ObjectProperty ;
+                                             owl:inverseOf <http://purl.obolibrary.org/obo/BFO_0000057> ;
+                                             dc11:identifier "250-BFO" ;
+                                             rdfs:label "participates in"@en ;
+                                             skos:definition "(Elucidation) participates in holds between some b that is either a specifically dependent continuant or generically dependent continuant or independent continuant that is not a spatial region & some process p such that b participates in p some way"@en ;
+                                             skos:scopeNote "Users that require more sophisticated representations of time are encouraged to import a temporal extension of BFO-Core provided by the BFO development team. See documentation for guidance: <https://github.com/BFO-ontology/BFO-2020/tree/master/src/owl/profiles/temporal%20extensions>"@en .
+
+#realizes
+###  http://purl.obolibrary.org/obo/BFO_0000055
+<http://purl.obolibrary.org/obo/BFO_0000055> rdf:type owl:ObjectProperty ;
+                                             dc11:identifier "059-BFO" ;
+                                             rdfs:label "realizes"@en ;
+                                             skos:definition "(Elucidation) realizes is a relation between a process b and realizable entity c such that c inheres in some d & for all t, if b has participant d then c exists & the type instantiated by b is correlated with the type instantiated by c"@en ;
+                                             skos:example "A balding process realizes a disposition to go bald; a studying process realizes a student role; a process of pumping blood realizes the pumping function of a heart"@en .
+
+#is output of
+###  https://www.commoncoreontologies.org/ont00001816
+cco:ont00001816 rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf obo:BFO_0000056 ;
+                 owl:inverseOf cco:ont00001986 ;
+                 rdfs:domain obo:BFO_0000002 ;
+                 rdfs:range obo:BFO_0000015 ;
+                 rdfs:label "is output of"@en ;
+                 skos:definition "x is_output_of y iff x is an instance of Continuant and y is an instance of Process, such that the presence of x at the end of y is a necessary condition for the completion of y."@en ;
+                 cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
