@@ -188,3 +188,18 @@ cco:ont00001816 rdf:type owl:ObjectProperty ;
                  rdfs:label "is output of"@en ;
                  skos:definition "x is_output_of y iff x is an instance of Continuant and y is an instance of Process, such that the presence of x at the end of y is a necessary condition for the completion of y."@en ;
                  cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+#artifact design
+ex:Artifact_Design2 rdfs:label "Artifact Design" ;
+                   rdfs:subClassOf obo:BFO_0000015 ;
+                   skos:definition "Artifact Design is a process in which a aircraft model is output of, and is informed by a Aerospace Engineer's research"@en .
+#act of aircraft processing
+ex:Act_Of_Aircraft_Processing rdfs:subClassOf obo:BFO_0000015 ;
+                          rdfs:label "Act of Aicraft Processing"@en ;
+                          skos:definition "A process in which an aicraft is processed."@en ;
+                          a owl:Class ;
+                          obo:BFO_0000055 ex:Adaptability_Evaluation .
+#adaptability evaluation
+ex:Adaptability_Evaluation rdfs:subClassOf obo:BFO_0000015 ;
+                           rdfs:label "Adaptability Evaluation"@en ;
+                           a owl:Class ;
+                           skos:definition "A process in which a report that is about the disposition of some entity to adapt is output"@en . 
