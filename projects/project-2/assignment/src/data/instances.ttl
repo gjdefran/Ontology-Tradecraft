@@ -178,12 +178,15 @@ ex:SOC_1 rdf:type [
     )
 ] .
 
-ex:Act_Of_Aircraft_Processing rdf:type obo:BFO_0000015 ;
+ex:Act_Of_Aircraft_Processing rdf:type ex:Act_of_Aircraft_Processing_Class ;
                           rdfs:label "Act of Aircraft Processing"@en ;
                           skos:definition "A process in which an aircraft is processed."@en ;
                           obo:BFO_0000055 ex:Adaptability_Evaluation .
 
-ex:Adaptability_Evaluation rdf:type obo:BFO_0000015 ;
+
+obo:BFO_0000055 rdfs:label "realizes"@en .
+
+ex:Adaptability_Evaluation rdf:type ex:Adaptability_Evaluation_Class ;
                            rdfs:label "Adaptability Evaluation"@en ;
                            skos:definition "A process in which a report that is about the disposition of some entity to adapt is output"@en . 
 
@@ -209,7 +212,9 @@ ex:Aerospace_Enginer_Research rdfs:label "Aerospace Engineer Research"@en ;
                               rdf:type obo:BFO_0000002 ;
                               ex:is_about ex:Artifact_Design . 
 
-
+ex:Job_role obo:BFO_0000197 _:bearer ;
+            rdfs:label "Aerospace Engineer Job Role"@en ;
+            rdf:type ex:Job_role_Class .
 
 
 
