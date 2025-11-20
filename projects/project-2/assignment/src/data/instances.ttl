@@ -178,6 +178,56 @@ ex:SOC_1 rdf:type [
     )
 ] .
 
+ex:SOC_2 rdf:type [
+    a owl:Class ;
+    owl:intersectionOf (
+        [ a owl:Restriction ;
+        owl:onProperty obo:BFO_0000197 ;
+        owl:allValuesFrom [
+            a owl:Class ;
+            owl:intersectionOf (
+                 [ a owl:Restriction ;
+                   owl:onProperty obo:BFO_0000056 ;
+                   owl:hasValue ex:Act_Of_Aircraft_Processing
+                 ]
+                 [ a owl:Restriction ;
+                   owl:onProperty obo:BFO_0000056 ;
+                   owl:hasValue ex:Adaptability_Evaluation
+                 ]
+                 [ a owl:Restriction ;
+                   owl:onProperty obo:BFO_0000056 ;
+                   owl:hasValue ex:Recomending
+                 ]
+             
+              )
+          ]
+        ]
+    )
+] .
+
+ex:SOC_3 rdf:type [
+    a owl:Class ;
+    owl:intersectionOf (
+        [ a owl:Restriction ;
+        owl:onProperty obo:BFO_0000197 ;
+        owl:allValuesFrom [
+            a owl:Class ;
+            owl:intersectionOf (
+                 [ a owl:Restriction ;
+                   owl:onProperty obo:BFO_0000056 ;
+                   owl:hasValue ex:Systems_Maintanence
+                 ]
+                 [ a owl:Restriction ;
+                   owl:onProperty obo:BFO_0000056 ;
+                   owl:hasValue ex:Data_Evaluation
+                 ]
+             
+              )
+          ]
+        ]
+    )
+] .
+
 ex:Act_Of_Aircraft_Processing rdf:type ex:Act_of_Aircraft_Processing_Class ;
                           rdfs:label "Act of Aircraft Processing"@en ;
                           skos:definition "A process in which an aircraft is processed."@en ;
@@ -196,12 +246,11 @@ ex:Aircraft_Spec cco:ont00001816 ex:Act_Of_Aircraft_Design ;
 
 ex:SOC_2 rdfs:label "SOC: 17-2010 Aerospace Engineer"@en ;
          rdf:type obo:BFO_0000031 ;
-         ex:has_SOC_CODE "17-2010" ;
-         skos:definition "no definition provided"@en .
+         ex:has_SOC_CODE "17-2010" .
 
 ex:SOC_3 rdfs:label "SOC: 17-3021 Aerospace Engineer"@en ;
          rdf:type obo:BFO_0000031 ;
-         ex:has_SOC_CODE "17-2010" ;
+         ex:has_SOC_CODE "17-3021" ;
          skos:definition "Operate, install, adjust, and maintain integrated computer/communications systems, consoles, simulators, and other data acquisition, test, and measurement instruments and equipment, which are used to launch, track, position, and evaluate air and space vehicles. May record and interpret test data."@en .
 
 ex:Artifact_Design2 rdfs:label "Artifact Design" ;
@@ -215,6 +264,64 @@ ex:Aerospace_Enginer_Research rdfs:label "Aerospace Engineer Research"@en ;
 ex:Job_role obo:BFO_0000197 _:bearer ;
             rdfs:label "Aerospace Engineer Job Role"@en ;
             rdf:type ex:Job_role_Class .
+
+#Task 4
+ex:SOC_2 rdfs:label "OCC: 17-2010 Aerospace Engineer"^^xsd:string ;
+         rdf:type obo:BFO_0000031 ;
+         skos:definition "Perform engineering duties in designing, constructing, and testing aircraft, missiles, and spacecraft. May conduct basic and applied research to evaluate adaptability of materials and equipment to aircraft design and manufacture. May recommend improvements in testing equipment and techniques."@en ;
+         ex:O_GROUP "broad"^^xsd:string ;
+         ex:has_area "99"^^xsd:integer ;
+         ex:own_code "1235"^^xsd:integer .
+
+ex:SOC_1 rdf:type obo:BFO_0000031 ;
+         rdfs:label "OCC: 17-2020 Aerospace Engineer"^^xsd:string ;
+         skos:definition "Perform engineering duties in designing, constructing, and testing aircraft, missiles, and spacecraft. May conduct basic and applied research to evaluate adaptability of materials and equipment to aircraft design and manufacture. May recommend improvements in testing equipment and techniques."@en ;
+         ex:O_GROUP "detailed"^^xsd:string ;
+         ex:has_area "99"^^xsd:integer ;
+         ex:own_code "1235"^^xsd:integer .
+
+ex:SOC_3 rdf:type obo:BFO_0000031 ;
+         rdfs:label "OCC: 17-3021 Aerospace Engineer"^^xsd:string ;
+         skos:definition "Operate, install, adjust, and maintain integrated computer/communications systems, consoles, simulators, and other data acquisition, test, and measurement instruments and equipment, which are used to launch, track, position, and evaluate air and space vehicles. May record and interpret test data."@en ;
+         ex:O_GROUP "detailed"^^xsd:string ;
+         ex:has_area "99"^^xsd:integer ;
+         ex:own_code "1235"^^xsd:integer .
+
+ex:population rdfs:label "population"@en ;
+              skos:definition "the aggregate consisting of all persons"@en ;
+              rdf:type obo:BFO_0000040 ;
+              cco:ont00001841 ex:act_of_measuring .
+
+ex:act_of_measuring rdf:type cco:ont00000345 ;
+                    rdfs:label "Act of Measuring"@en .
+
+ex:total_employment rdf:type cco:ont00001163 ;
+                    rdfs:label "Total Employment"@en ;
+                    skos:definition "Total Employment is a measurment that is about the population."@en ;
+                    cco:ont00001816 ex:act_of_measuring ;
+                    ex:has_value "154187380"^^xsd:integer .
+  
+ex:total_employment_quality rdf:type obo:BFO_0000019 ;
+                            skos:definition "Total Employment is a quality which inheres in a population and has an associated measurement."@en ;
+                            rdfs:label "Total Employment"@en ;
+                            obo:BFO_0000197 ex:population ;
+                            obo:BFO_0000101 ex:total_employment .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         
 
 
 

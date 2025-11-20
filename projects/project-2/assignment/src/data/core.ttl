@@ -210,3 +210,62 @@ ex:Adaptability_Evaluation_Class a rdf:Class ;
                                  rdfs:subClassOf obo:BFO_0000015 ;
                                  skos:definition "Adaptability Evaluation is a process that outputs information about the adaptability of the material parts of an aircraft"@en .
 
+#act of measuring
+###  https://www.commoncoreontologies.org/ont00000345
+cco:ont00000345 rdf:type owl:Class ;
+                 rdfs:subClassOf cco:ont00000228 ;
+                 rdfs:label "Act of Measuring"@en ;
+                 skos:definition "A Planned Act that involves determining the extent, dimensions, quanity, or quality of an Entity relative to some standard."@en ;
+                 skos:example "putting an object on a scale to measure its weight in kilograms" ,
+                              "rating Hollywood movies on a 1 to 5 star scale" ,
+                              "using a tape measure to determine the height and width of a doorway in inches" ;
+                 cco:ont00001760 "https://www.commoncoreontologies.org/EventOntology"^^xsd:anyURI .
+
+#is input of
+###  https://www.commoncoreontologies.org/ont00001841
+cco:ont00001841 rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf obo:BFO_0000056 ;
+                 owl:inverseOf cco:ont00001921 ;
+                 rdfs:domain obo:BFO_0000002 ;
+                 rdfs:range obo:BFO_0000015 ;
+                 rdfs:label "is input of"@en ;
+                 skos:definition "x is_input_of y iff x is an instance of Continuant and y is an instance of Process, such that the presence of x at the beginning of y is a necessary condition for the start of y."@en ;
+                 cco:ont00001760 "https://www.commoncoreontologies.org/ExtendedRelationOntology"^^xsd:anyURI .
+
+#quality
+###  http://purl.obolibrary.org/obo/BFO_0000019
+obo:BFO_0000019 rdf:type owl:Class ;
+                rdfs:subClassOf obo:BFO_0000020 ;
+                <http://purl.org/dc/elements/1.1/identifier> "055-BFO" ;
+                rdfs:label "quality"@en ;
+                skos:definition "(Elucidation) A quality is a specifically dependent continuant that, in contrast to roles and dispositions, does not require any further process in order to be realized"@en ;
+                skos:example "The colour of a tomato; the ambient temperature of this portion of air; the length of the circumference of your waist; the shape of your nose; the shape of your nostril; the mass of this piece of gold"@en .
+
+#carrier of
+###  http://purl.obolibrary.org/obo/BFO_0000101
+obo:BFO_0000101 rdf:type owl:ObjectProperty ;
+                rdfs:domain [ owl:intersectionOf ( obo:BFO_0000004
+                                                   [ rdf:type owl:Class ;
+                                                     owl:complementOf obo:BFO_0000006
+                                                   ]
+                                                 ) ;
+                              rdf:type owl:Class
+                            ] ;
+                rdfs:range obo:BFO_0000031 ;
+                <http://purl.org/dc/elements/1.1/identifier> "254-BFO" ;
+                rdfs:label "is carrier of"@en ;
+                skos:definition "b is carrier of c =Def there is some time t such that c generically depends on b at t"@en ;
+                skos:scopeNote "Users that require more sophisticated representations of time are encouraged to import a temporal extension of BFO-Core provided by the BFO development team. See documentation for guidance: <https://github.com/BFO-ontology/BFO-2020/tree/master/src/owl/profiles/temporal%20extensions>"@en .
+
+#datatype properties
+ex:O_GROUP rdf:type owl:DatatypeProperty ;
+           rdfs:label "o group"@en ;
+           skos:definition "the O Group associated with a certain soc/occ entry."@en .
+
+ex:has_area rdf:type owl:DatatypeProperty ;
+            rdfs:label "has area"@en ;
+            skos:definition "the area associated with a certain soc/occ entry."@en .
+
+ex:own_code rdf:type owl:DatatypeProperty ;
+            rdfs:label "own code"@en ;
+            skos:definition "the own code associated with a certain soc/occ entry."@en .
