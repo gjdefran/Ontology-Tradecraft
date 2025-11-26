@@ -1,0 +1,806 @@
+@prefix : <https://www.commoncoreontologies.org/ArtifactOntology#> .
+@prefix cco: <https://www.commoncoreontologies.org/> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@base <https://www.commoncoreontologies.org/ArtifactOntology#> .
+
+###https://www.commoncoreontologies.org/ont00000258
+cco:ont00000258 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001064 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002020
+                                ] ;
+                rdfs:label "Material Copy of a One-Dimensional Barcode"@en ;
+                skos:altLabel "One-Dimensional Barcode"@en ;
+                skos:definition "A Material Copy of a Barcode that is designed to carry parallel lines of varying widths and spacing that concretize some Directive Information Content Entity."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000656
+cco:ont00000656 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000445 ;
+                rdfs:label "Radiological Weapon"@en ;
+                skos:definition "A Weapon that is designed to inflict harm, damage, or incapacity by means of releasing radioactive material."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Radiological_warfare&oldid=1060817328"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001099
+cco:ont00001099 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001326 ;
+                rdfs:label "Bridge"@en ;
+                skos:definition "A Land Transportation Artifact that is designed to span physical obstacles without closing the way underneath to enable Persons or Ground Vehicles to pass over the obstacles."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Bridge&oldid=1061858310" ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000716
+cco:ont00000716 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001049 ;
+                rdfs:label "Electric Battery"@en ;
+                skos:altLabel "Battery"@en ;
+                skos:definition "An Electrical Power Source that is designed to produce electric power by converting chemical energy to electrical energy."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/wiki/Battery_(electricity)" ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000394
+cco:ont00000394 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000746 ;
+                rdfs:label "Internal Combustion Engine"@en ;
+                skos:definition "A Combustion Engine that is designed to have an internal Combustion Chamber where portions of Fuel and Oxidizer mixture are burned to generate thermal energy that is then converted into mechanical energy."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Internal_combustion_engine&oldid=1063281505"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001061
+cco:ont00001061 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000053 ;
+                rdfs:label "Motorcycle"@en ;
+                skos:altLabel "Motorbike"@en ;
+                skos:definition "A Ground Motor Vehicle that is designed to transport a very small number of passengers (usually 1 or 2) while traveling on two or three tired wheels."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Motorcycle&oldid=1063743553"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000689
+cco:ont00000689 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000323 ;
+                rdfs:label "Switch Artifact Function"@en ;
+                skos:definition "An Artifact Function that is realized in a process of breaking an electric circuit by interrupting the current or diverting it from one conductor to another."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Switch&oldid=1059685800"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001270
+cco:ont00001270 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000268 ;
+                rdfs:label "Howitzer"@en ;
+                skos:definition "A Cannon that is designed to have a relatively short barrel and to use relatively small propellant charges to propel projectiles in relatively high trajectories with a steep angle of descent."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Howitzer&oldid=1059576383"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000840
+cco:ont00000840 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000618 ;
+                rdfs:label "Bicycle"@en ;
+                skos:definition "A Ground Vehicle that consists of two wheels, one in front of the other, attached to a frame along with handlebars and pedals such that it is designed to receive its motive power from pedaling."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Bicycle&oldid=1063761124"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001087
+cco:ont00001087 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001306 ;
+                rdfs:label "Orientation Observation Artifact Function"@en ;
+                skos:altLabel "Attitude Observation Artifact Function"@en ;
+                skos:definition "An Observation Artifact Function that is realized during events in which an Artifact is used to collect information about the Orientation of a specified object or class of objects."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001346
+cco:ont00001346 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000995 ;
+                rdfs:label "Legal Instrument"@en ;
+                skos:definition "A Material Artifact that is designed as a formally executed written document that can be formally attributed to its author, records and formally expresses a legally enforceable act, process, or contractual duty, obligation, or right, and therefore evidences that act, process, or agreement."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Legal_instrument&oldid=1054387344"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000415
+cco:ont00000415 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000828 ;
+                rdfs:label "Anti-Microbial Artifact Function"@en ;
+                skos:definition "A Pesticide Artifact Function that is realized in a process which causes illness in, or the death of, a microorganism."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Antimicrobial&oldid=1064100151"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000652
+cco:ont00000652 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000995 ;
+                rdfs:label "Decoy"@en ;
+                skos:definition "A Material Artifact that is designed to distract or conceal what an individual or group might be looking for."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Decoy&oldid=1058455081"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000933
+cco:ont00000933 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000907 ;
+                rdfs:label "Landline Telephone"@en ;
+                skos:definition "A Telephone that is connected to a Telephone Network through a pair of wires."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Telephone&oldid=1060006278"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000663
+cco:ont00000663 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000995 ;
+                rdfs:label "Power Transmission Artifact"@en ;
+                skos:definition "A Material Artifact that is designed to transfer and regulate Power flow from a Power Source to an application point."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000938
+cco:ont00000938 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001301 ;
+                rdfs:label "Financial Artifact Function"@en ;
+                skos:definition "A Service Artifact Function that is realized in processes of managing money."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Finance&oldid=1062402926"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001045
+cco:ont00001045 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000319 ;
+                rdfs:label "Artifact Model"@en ;
+                skos:definition "A Directive Information Content Entity that prescribes a common set of Functions and Qualities to inhere in a set of artifact instances."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001121
+cco:ont00001121 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000294 ;
+                rdfs:label "Scramjet Engine"@en ;
+                skos:altLabel "Scramjet"@en ,
+                              "Supersonic Combusting Ramjet"@en ;
+                skos:definition "An Air-Breathing Jet Engine that uses the forward motion of the Engine to compress incoming air at supersonic speeds before adding the fuel and constantly combusting the mixture then expelling the exhaust out through the rear Propelling Nozzle to generate Thrust."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Scramjet&oldid=1062429697"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000461
+cco:ont00000461 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000966 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002026
+                                ] ;
+                rdfs:label "Material Copy of a ISSN Barcode"@en ;
+                skos:altLabel "ISSN Barcode"@en ;
+                skos:definition "A Material Copy of an EAN Barcode that is used to designate periodicals."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000577
+cco:ont00000577 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000995 ;
+                rdfs:label "Power Rectifier"@en ;
+                skos:definition "A Material Artifact that is designed to convert alternating current (AC) to direct current (DC)."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Rectifier&oldid=1049943028"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000582
+cco:ont00000582 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000258 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002022
+                                ] ;
+                rdfs:label "Material Copy of a Code 93 Barcode"@en ;
+                skos:altLabel "Code 93 Barcode"@en ;
+                skos:definition "A Material Copy of a One-Dimensional Barcode that consists of up to 93 ASCII characters and is used in logistics to identify packages in retail inventory, lable electornic components, and provide supplementary delivery information."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000516
+cco:ont00000516 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000288 ;
+                rdfs:label "Pneumatic Power Source"@en ;
+                skos:definition "A Power Source that is designed to generate, control, or transmit power by means of compressed air or compressed inert gases."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001275
+cco:ont00001275 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001353 ;
+                rdfs:label "Nominal Speed Artifact Function"@en ;
+                skos:definition "A Speed Artifact Function that is realized in some process in which the Artifact bearing the Artifact Function attains a speed that does not exceed some specified tolerance of that Artifact."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000808
+cco:ont00000808 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000791 ;
+                rdfs:label "Reactant Artifact Function"@en ;
+                skos:definition "A Chemical Reaction Artifact Function that is realized in a process in which a substance or compound is added to a system in order to bring about a chemical reaction and is consumed in the course of the reaction."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Reagent&oldid=1017651471"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001370
+cco:ont00001370 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000995 ;
+                rdfs:label "Machine Bearing"@en ;
+                skos:definition "A Material Artifact that is designed to constrain relative motion to only desired motion and reduces friction between moving parts."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/wiki/Bearing_(mechanical)" ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001188
+cco:ont00001188 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000715 ;
+                rdfs:label "Denture"@en ;
+                skos:definition "A Prosthesis that is designed to replace missing teeth."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Dentures&oldid=1056527226"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000711
+cco:ont00000711 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000156 ;
+                rdfs:label "Semi-automatic Pistol"@en ;
+                skos:definition "A Hand Gun that has a single fixed firing chamber machined into the rear of the barrel and an ammunition magazine capable of holding multiple Cartridges such that the Hand Gun is designed to automatically reload each time it is fired and to fire a Bullet with each successive pull of the trigger until the stored ammunition is depleted."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Semi-automatic_pistol&oldid=1058568715"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000325
+cco:ont00000325 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000903 ;
+                rdfs:label "Radio Transponder"@en ;
+                skos:altLabel "Transmitter-Responder"@en ;
+                skos:definition "A Radio Communication Instrument that is an electronic device that acts as both a Radio Transmitter and responder and is used to wirelessly receive and transmit electrical signals."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000897
+cco:ont00000897 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000457 ;
+                rdfs:comment "Oxidizers are essential participants in many processes including combustion and rusting. Hence, a portion of oxidizer must always be present along with a portion of fuel in order for combustion to occur."@en ;
+                rdfs:label "Portion of Oxidizer"@en ;
+                skos:altLabel "Portion of Oxidant"@en ,
+                              "Portion of Oxidizing Agent"@en ;
+                skos:definition "A Portion of Material that is disposed to steal electrons from other substances (i.e. to oxidize other substances) as a participant in a reduction-oxidation process."@en ;
+                skos:example "oxygen, hydrogen peroxide, chlorine, sulfiric acid, potassium nitrate" ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001150
+cco:ont00001150 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000445 ;
+                rdfs:label "Portion of Ammunition"@en ;
+                skos:definition "A Weapon that is designed to inflict harm, damage, or incapacity by being projected toward its target at a significant Velocity."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Ammunition&oldid=1062875850"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00002066
+cco:ont00002066 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000552 ;
+                rdfs:label "Explosive Mine"@en ;
+                skos:altLabel "Mine"@en ,
+                              "Mine Weapon"@en ;
+                skos:definition "An Explosive Weapon that is designed to be concealed and to detonate as its target passes near it."@en ;
+                skos:scopeNote "Being (relatively) stationary is a common but not necessary feature of explosive mines."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Explosive_mine&oldid=1116284461"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001343
+cco:ont00001343 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000995 ;
+                rdfs:label "Circuit Breaker"@en ;
+                skos:definition "A Material Artifact that is designed to protect an electrical circuit from damage caused by excess current from an overload or short circuit."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Circuit_breaker&oldid=1060854893"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000012
+cco:ont00000012 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000781 ;
+                rdfs:label "Propulsion Control System"@en ;
+                skos:definition "A Control System that consists of control devices, displays, indicators, or modules designed to control a Propulsion System."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000183
+cco:ont00000183 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000323 ;
+                rdfs:label "Fragrance Artifact Function"@en ;
+                skos:definition "An Artifact Function that is realized in processes of emitting a pleasant or sweet odor."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Perfume&oldid=1062785740"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000966
+cco:ont00000966 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000258 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002025
+                                ] ;
+                rdfs:label "Material Copy of a EAN Barcode"@en ;
+                skos:altLabel "EAN Barcode"@en ;
+                skos:definition "A Material Copy of a One-Dimensional Barcode that consists of 8 or 13 numerical digits and is used to scan consumer goods."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000038
+cco:ont00000038 rdf:type owl:Class ;
+                rdfs:subClassOf obo:BFO_0000023 ;
+                rdfs:label "System Role"@en ;
+                skos:definition "A Role that inheres in an entity in virtue of its parts or elements being arranged in such a way that they together exhibit behavior or meaning that they do not exhibit individually."@en ;
+                cco:ont00001754 "https://www.incose.org/about-systems-engineering/system-and-se-definition/general-system-definition"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000868
+cco:ont00000868 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001173 ;
+                rdfs:label "Rocket Pod"@en ;
+                skos:definition "A Rocket Launcher that is designed to contain several Unguided Rockets held in individual tubes and to be used by Aircraft or Helicopters for close air support."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000317
+cco:ont00000317 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001218 ;
+                rdfs:label "Electronic Signal Processing Artifact Function"@en ;
+                skos:definition "A Signal Processing Artifact Function that inheres in Artifacts that are designed to process or transfer information contained in electronic signals."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000603
+cco:ont00000603 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000323 ;
+                rdfs:label "Navigation Artifact Function"@en ;
+                skos:definition "An Artifact Function that is realized during events in which an Artifact is used to determine the precise location of itself or another object and plan a route to a specified destination."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000743
+cco:ont00000743 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000702 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002005
+                                ] ;
+                rdfs:label "Material Copy of a Chart"@en ;
+                skos:altLabel "Chart"@en ;
+                skos:definition "A Material Copy of an Image that is designed to carry some Representational Information Content Entity that is prescribed by some canonical visual format."@en ;
+                cco:ont00001754 "Adapted from “Chart.” Merriam-Webster.com Dictionary, Merriam-Webster, https://www.merriam-webster.com/dictionary/chart. Accessed 4 Aug. 2024." ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000002
+cco:ont00000002 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000323 ;
+                rdfs:label "Cooling Artifact Function"@en ;
+                skos:definition "An Artifact Function that is realized in a process in which the thermal energy of a system decreases."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001038
+cco:ont00001038 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001105 ;
+                rdfs:label "Nickel Cadmium Electric Battery"@en ;
+                skos:altLabel "NiCad Battery"@en ;
+                skos:definition "A Secondary Cell Electric Battery that has a cadmium anode and nickel oxide hydroxide cathode."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Nickel%E2%80%93cadmium_battery&oldid=1061809659"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000409
+cco:ont00000409 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000742 ;
+                rdfs:label "Spark Ignition System"@en ;
+                skos:definition "An Ignition System that is designed to produce a spark in order to initiate an Ignition process."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001103
+cco:ont00001103 rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( cco:ont00000686
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty cco:ont00001916 ;
+                                                             owl:someValuesFrom cco:ont00001045
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf cco:ont00000686 ;
+                rdfs:label "Artifact Model Name"@en ;
+                skos:definition "A Designative Information Content Entity that designates some Artifact Model."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000343
+cco:ont00000343 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000634 ;
+                rdfs:label "Reciprocating Steam Engine"@en ;
+                skos:definition "A Steam Engine that is designed to use one or more reciprocating pistons to convert pressure into a rotating motion."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Reciprocating_engine&oldid=1057783145"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000965
+<https://www.commoncoreontologies.org/ont00000965> rdf:type owl:Class ;
+                                                   owl:equivalentClass [ owl:intersectionOf ( <https://www.commoncoreontologies.org/ont00000958>
+                                                                                              [ rdf:type owl:Restriction ;
+                                                                                                owl:onProperty <https://www.commoncoreontologies.org/ont00001942> ;
+                                                                                                owl:someValuesFrom <http://purl.obolibrary.org/obo/BFO_0000001>
+                                                                                              ]
+                                                                                            ) ;
+                                                                         rdf:type owl:Class
+                                                                       ] ;
+                                                   rdfs:subClassOf <https://www.commoncoreontologies.org/ont00000958> ;
+                                                   rdfs:label "Directive Information Content Entity"@en ;
+                                                   <http://www.w3.org/2004/02/skos/core#altLabel> "Directive ICE"@en ;
+                                                   <http://www.w3.org/2004/02/skos/core#definition> "An Information Content Entity that consists of a set of propositions or images (as in the case of a blueprint) that prescribe some Entity."@en ;
+                                                   <https://www.commoncoreontologies.org/ont00001760> "https://www.commoncoreontologies.org/InformationEntityOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000900
+cco:ont00000900 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001169 ;
+                rdfs:label "Radio Communication Relay Artifact Function"@en ;
+                skos:definition "A Communication Relay Artifact Function that is realized during events in which an Artifact is used to first receive and then transmit information without the use of wires from one Artifact to another for the purpose of communiction."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000267
+cco:ont00000267 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000791 ;
+                rdfs:label "Catalyst Artifact Function"@en ;
+                skos:definition "A Chemical Reaction Artifact Function that is realized in a process in which the rate of a chemical reaction is increased due to the participation of an additional substance, without that substance being consumed in the reaction."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Catalysis&oldid=1063864001"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000364
+cco:ont00000364 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001221 ;
+                rdfs:label "Pneumatic Motor"@en ;
+                skos:altLabel "Air Motor"@en ,
+                              "Compressed Air Engine"@en ;
+                skos:definition "A Physically Powered Engine that converts potential energy stored in a portion of compressed air into mechanical energy."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000877
+cco:ont00000877 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000723 ;
+                rdfs:label "Brake Control System"@en ;
+                skos:definition "A Vehicle Control System that is designed to control the process of braking with the aim of preventing rolling, skidding, and hydroplaning."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000931
+cco:ont00000931 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000326 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002035
+                                ] ;
+                rdfs:label "Material Copy of a UPC-A Barcode"@en ;
+                skos:altLabel "UPC-A Barcode"@en ;
+                skos:definition "A Material Copy of a UPC Barcode that consists of 12 numerical digits."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001341
+<https://www.commoncoreontologies.org/ont00001341> rdf:type owl:Class ;
+                                                   rdfs:subClassOf <http://purl.obolibrary.org/obo/BFO_0000024> ;
+                                                   rdfs:label "Portion of Geosphere"@en ;
+                                                   <http://www.w3.org/2004/02/skos/core#definition> "A fiat object part that is composed of one or more portions of the atmosphere, cryosphere, hydrosphere, or lithosphere"@en ;
+                                                   <https://www.commoncoreontologies.org/ont00001754> "https://en.wikipedia.org/w/index.php?title=Geosphere&oldid=1137306949"^^xsd:anyURI ;
+                                                   <https://www.commoncoreontologies.org/ont00001760> "https://www.commoncoreontologies.org/GeospatialOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001024
+cco:ont00001024 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000394 ;
+                rdfs:label "Spark Ignition Engine"@en ;
+                skos:definition "An Internal Combustion Engine that is designed to operate by generating a spark to ignite a portion of Fuel and Oxidizer mixture."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000788
+cco:ont00000788 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000634 ;
+                rdfs:label "Turbine Steam Engine"@en ;
+                skos:altLabel "Steam Turbine"@en ;
+                skos:definition "A Steam Engine that is designed to extract thermal energy from pressurized steam and use it to do mechanical work on a rotating output shaft."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Steam_turbine&oldid=1060224962"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001200
+cco:ont00001200 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000323 ;
+                rdfs:label "Structural Support Artifact Function"@en ;
+                skos:definition "An Artifact Function that is realized by an Artifact providing physical support to another object."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001105
+cco:ont00001105 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000716 ;
+                rdfs:label "Secondary Cell Electric Battery"@en ;
+                skos:altLabel "Rechargeable Battery"@en ,
+                              "Secondary Cell Battery"@en ;
+                skos:definition "An Electric Battery that is designed to be recharged."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Rechargeable_battery&oldid=1064096406"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000471
+cco:ont00000471 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001046 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002011
+                                ] ;
+                rdfs:label "Material Copy of a Warning Message"@en ;
+                skos:altLabel "Warning Message"@en ;
+                skos:definition "A Material Copy of a Notification Message that is designed to carry an Information Content Entity that describes a possible or impending threat."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000255
+cco:ont00000255 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000457 ;
+                rdfs:label "Portion of Cryogenic Material"@en ;
+                skos:definition "A Portion of Material that has been reduced to a very low temperature (below -180 degrees Celcius)."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000624
+cco:ont00000624 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001298 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002043
+                                ] ;
+                rdfs:label "Material Copy of a Report"@en ;
+                skos:altLabel "Report"@en ;
+                skos:definition "A Material Copy of a Document that is designed to carry some specific Information Content Entity that conveys an account of some event, situation, or the result of some observation or inquiry."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Report&oldid=1063765657"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000651
+cco:ont00000651 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000323 ;
+                rdfs:label "Containing Artifact Function"@en ;
+                skos:definition "An Artifact Function that is realized in a process in which one entity contains another."@en ;
+                cco:ont00001754 "http://www.dictionary.com/browse/containing" ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001303
+cco:ont00001303 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001306 ;
+                rdfs:label "Position Observation Artifact Function"@en ;
+                skos:definition "An Observation Artifact Function that is realized during events in which an Artifact is used to collect information about the position of a specified object or class of objects."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000841
+cco:ont00000841 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001153 ;
+                rdfs:label "Explosive Artifact Function"@en ;
+                skos:definition "A Damaging Artifact Function that is realized in a process in which the structural integrity of an entity is impaired because of the rapid increase in volume and release of energy in an extreme manner."@en ;
+                cco:ont00001754 "http://www.dictionary.com/browse/explosive" ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000215
+cco:ont00000215 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000547 ;
+                rdfs:comment "A Radio Telescope consists of a specialized Antenna and a Radio Receiver and is typically used to receive radio waves from sources in outer space."@en ;
+                rdfs:label "Radio Telescope"@en ;
+                skos:definition "A Telescope that is designed to aid in the observation of spatially distant Objects by means of collecting and focusing radio waves to form an enhanced image of the Object."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Radio_telescope&oldid=1052819190"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001179
+cco:ont00001179 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000893 ;
+                rdfs:label "Digital Storage Device"@en ;
+                skos:definition "An Information Medium Artifact that is designed to bear some Information Content Entity by means of recording that information in digital (binary) format."@en ;
+                skos:example "A computer's Hard Disk Drive" ,
+                             "A portable USB Drive" ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Data_storage&oldid=1060116427"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000758
+cco:ont00000758 rdf:type owl:Class ;
+                rdfs:subClassOf obo:BFO_0000023 ;
+                rdfs:label "Component Role"@en ;
+                skos:definition "A Role that inheres in an entity having a discrete structure in virtue of that entity being part of a system considered at a particular level of analysis."@en ;
+                cco:ont00001754 "ISO/IEC. 1998. Information Technology ― System and Software Integrity Levels Geneva, Switzerland: International Organization for Standardization (ISO)/International Electrotechnical Commission (IEC). ISO/IEC. 15026:1998. : 3.1"@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000266
+cco:ont00000266 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001381 ;
+                rdfs:label "Hearing Aid"@en ;
+                skos:definition "A Medical Artifact that is designed to improve hearing for its user."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Hearing_aid&oldid=1062688647"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001255
+cco:ont00001255 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000828 ;
+                rdfs:label "Insecticide Artifact Function"@en ;
+                skos:definition "A Pesticide Artifact Function that is realized in a process that causes harm to, or the death of, an insect."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Insecticide&oldid=1063322558"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000858
+cco:ont00000858 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000552 ;
+                rdfs:label "Improvised Explosive Device"@en ;
+                skos:definition "An Explosive Weapon that is designed to be used in non-conventional military action."@en ;
+                cco:ont00001753 "IED" ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Improvised_explosive_device&oldid=1063432318"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000575
+cco:ont00000575 rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( cco:ont00000965
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty cco:ont00001942 ;
+                                                             owl:someValuesFrom obo:BFO_0000019
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                rdfs:subClassOf cco:ont00000965 ;
+                rdfs:label "Quality Specification"@en ;
+                skos:definition "A Directive Information Content Entity that prescribes some Quality."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001138
+cco:ont00001138 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000499 ;
+                rdfs:label "Beverage Antenna"@en ;
+                skos:definition "A Wire Antenna that consists of a horizontal wire one-half to two wavelengths long that is suspended above the ground with one end attached to the receiver feedline and the other grounded and which is typically used in the low and medium frequency radio bands."@en ;
+                cco:ont00001754 "Adapted from: https://en.wikipedia.org/wiki/Beverage_antenna" ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001097
+cco:ont00001097 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001278 ;
+                rdfs:label "Common Stock"@en ;
+                skos:definition "Stock that entitles its holder to voting on corporate decisions."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000411
+cco:ont00000411 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001100 ;
+                rdfs:label "Speed Measurement Artifact Function"@en ;
+                skos:definition "A Measurement Artifact Function that is realized during events in which an Artifact is used to measure the Speed of a specified object's or class of objects' Motion."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000880
+cco:ont00000880 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001301 ;
+                rdfs:label "Religious Artifact Function"@en ;
+                skos:definition "A Service Artifact Function that is realized in processes related to worship and prayer."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Religion&oldid=1063431202"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000762
+cco:ont00000762 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000415 ;
+                rdfs:label "Fungicide Artifact Function"@en ;
+                skos:definition "An Anti-Microbial Artifact Function that is realized in a process which causes harm to, or the death of, some fungus or fungal spore."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Fungicide&oldid=1056769271"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000903
+cco:ont00000903 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000346 ;
+                rdfs:label "Radio Communication Instrument"@en ;
+                skos:definition "A Communication Instrument that is designed to enable communication between two or more entities via the use of radio waves."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000422
+cco:ont00000422 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000323 ;
+                rdfs:label "Communication Reception Artifact Function"@en ;
+                skos:definition "An Artifact Function that is realized during events in which an Artifact is used to receive information that has been transmitted for the purpose of communiction."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001051
+cco:ont00001051 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000445 ;
+                rdfs:label "Projectile Launcher"@en ;
+                skos:definition "A Weapon that is designed to inflict damage or harm by means of launching a high-velocity projectile at a target."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Projectile&oldid=1062048285"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000113
+cco:ont00000113 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000323 ;
+                rdfs:label "Ventilation Control Artifact Function"@en ;
+                skos:definition "An Artifact Function that is realized in processes in which some Artifact is used to control the quality of air in some space."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000756
+cco:ont00000756 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000798 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002006
+                                ] ;
+                rdfs:label "Material Copy of a Database"@en ;
+                skos:altLabel "Database"@en ;
+                skos:definition "An Information Bearing Artifact that is designed to carry some set of specific Information Content Entities and to be rapidly searchable and retrievable."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Database&oldid=1057024641"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000350
+cco:ont00000350 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000453 ;
+                rdfs:label "Cooling System"@en ;
+                skos:definition "An Environment Control System that is designed to cool the air or objects in a Site."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000706
+cco:ont00000706 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000995 ;
+                rdfs:label "Terminal Board"@en ;
+                skos:definition "A Material Artifact that is designed to join electrical terminations and create an electrical circuit by means of a block which connects individual wires without a splice or physically joining the ends."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Electrical_connector&oldid=1061247409"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000448
+cco:ont00000448 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000323 ;
+                rdfs:label "Motion Artifact Function"@en ;
+                skos:definition "An Artifact Function that is realized in a process in which an entity changes its position with respect to time."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/wiki/Motion_(physics)" ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000069
+cco:ont00000069 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001298 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002041
+                                ] ;
+                rdfs:label "Material Copy of a Transcript"@en ;
+                skos:altLabel "Transcript"@en ;
+                skos:definition "A Material Copy of a Document that is designed to carry some specific Information Content Entity that was originally recorded in a different medium."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Transcript&oldid=1038510063"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001020
+cco:ont00001020 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000838 ;
+                rdfs:label "Portion of Gaseous Fuel"@en ;
+                skos:definition "A Portion of Fuel that is stored in a gaseous state."@en ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001228
+cco:ont00001228 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001298 ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty obo:BFO_0000101 ;
+                                  owl:someValuesFrom cco:ont00002045
+                                ] ;
+                rdfs:label "Material Copy of a Journal Article"@en ;
+                skos:altLabel "Journal Article"@en ;
+                skos:definition "A Material Copy of a Document that is designed to carry a specific brief composition on a specific topic as part of a Journal Issue."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Academic_journal&oldid=1059723283"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000748
+cco:ont00000748 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001150 ;
+                rdfs:label "Bullet"@en ;
+                skos:definition "A Portion of Ammunition that is designed to be projected by a Firearm, Sling, Slingshot, or Air Gun, but which does not (typically) contain explosives."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Bullet&oldid=1062391591"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000719
+cco:ont00000719 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000995 ;
+                rdfs:label "Counterfeit Instrument"@en ;
+                skos:definition "A Material Artifact that is designed to be a fake replica of some genuine Artifact."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Counterfeit&oldid=1063493600"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000340
+cco:ont00000340 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000268 ;
+                rdfs:label "Mortar"@en ;
+                skos:definition "A Cannon that is designed to fire projectiles at relatively low velocities over relatively short ranges."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/wiki/Mortar_(weapon)" ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000547
+cco:ont00000547 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000771 ;
+                rdfs:label "Telescope"@en ;
+                skos:definition "An Imaging Instrument that is designed to aid in the observation of spatially distant Objects by means of collecting and focusing Electromagnetic Radiation to form an enhanced image of the Object."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Telescope&oldid=1057722342"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00001185
+cco:ont00001185 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00000713 ;
+                rdfs:label "Rocket"@en ;
+                skos:definition "A Vehicle that is designed to travel through air or space and which obtains Thrust from a Rocket Engine."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Rocket&oldid=1063307477"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
+
+###https://www.commoncoreontologies.org/ont00000306
+cco:ont00000306 rdf:type owl:Class ;
+                rdfs:subClassOf cco:ont00001370 ;
+                rdfs:label "Hinge"@en ;
+                skos:definition "A Machine Bearing that is designed to limit the angle of Rotation between two solid objects."@en ;
+                cco:ont00001754 "https://en.wikipedia.org/w/index.php?title=Hinge&oldid=1059935559"^^xsd:anyURI ;
+                cco:ont00001760 "https://www.commoncoreontologies.org/ArtifactOntology"^^xsd:anyURI .
