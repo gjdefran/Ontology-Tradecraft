@@ -7,7 +7,7 @@ from collections import defaultdict
 
 # === Paths (adjust if needed) ===
 CSV_PATH = r"C:/Users/gregd/Documents/UB/ontology tradecraft/Ontology-Tradecraft/projects/project-4/assignment/src/data/readings_normalizedtest.csv"
-TTL_OUT = r"C:/Users/gregd/Documents/UB/ontology tradecraft/Ontology-Tradecraft/projects/project-4/assignment/src/measure_cco.ttl"
+TTL_OUT = r"C:/Users/gregd/Documents/UB/ontology tradecraft/Ontology-Tradecraft/projects/project-4/assignment/src/measure_cco.ttl" 
 
 # === Create RDF graph ===
 g = Graph()
@@ -232,7 +232,7 @@ def canonicalize_kind(raw: str) -> tuple[str, str]:
     return canon, _slug(canon.lower())
 
 # --- Unit normalization and mapping to CCO URIs ---
-# Canonical aliases for unit labels as they may appear in the CSV
+# Canonical aliases for unit labels as they might appear in the CSV
 UNIT_ALIASES = {
     "c": {"c", "degc", "celsius", "°c"},
     "f": {"f", "degf", "fahrenheit", "°f"},
