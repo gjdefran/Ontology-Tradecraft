@@ -16,14 +16,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # needed for diff below
+          fetch-depth: 0
       - name: Detect exactly one newly ADDED file under src/data/**
         id: detect
         shell: bash
         run: |
           BEFORE_SHA="${{ github.event.before }}"
           AFTER_SHA="${{ github.sha }}"
-          # Handle first-push edge case
           if [[ "$BEFORE_SHA" == "0000000000000000000000000000000000000000" || -z "$BEFORE_SHA" ]]; then
             if git rev-parse HEAD^ >/dev/null 2>&1; then
               BEFORE_SHA="$(git rev-parse HEAD^)"
