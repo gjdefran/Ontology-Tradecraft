@@ -2,8 +2,6 @@
 # Uses concatenated vectors: [TruncatedSVD(PPMI)  |  raw PPMI], L2-normalized, then cosine.
 # This preserves fine-grained co-occurrence and usually lifts VALID/TEST above 0.
 
-!pip -q install rdflib==7.0.0 networkx==3.2.1 matplotlib==3.8.4 requests==2.32.4
-
 import random, json, requests, numpy as np, matplotlib.pyplot as plt, rdflib, networkx as nx
 from rdflib.namespace import RDF, RDFS, OWL
 from sklearn.decomposition import TruncatedSVD, PCA

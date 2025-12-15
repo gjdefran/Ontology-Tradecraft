@@ -1,309 +1,234 @@
-#!/usr/bin/env python3
-"""
-Train an ELEmbeddings model on ontology data and evaluate on validation set.
-Finds optimal threshold for subclass-superclass relationships based on cosine similarity.
-"""
-
-import os
-import json
-import numpy as np
-from pathlib import Path
-from typing import Dict, List, Tuple
-
-# Initialize JVM before importing mOWL
-import jpype
-import jpype.imports
-
-if not jpype.isJVMStarted():
-    # Start JVM with mOWL's classpath (4GB memory allocation)
-    import mowl
-    mowl.init_jvm("4g")
-
+import mowl
+mowl.init_jvm("5g")
+from mowl.base_models.elmodel import EmbeddingELModel
+from mowl.nn import ELEmModule
 from mowl.datasets import PathDataset
-from mowl.models import ELEmbeddings
+from mowl.evaluation import Evaluator, RankingEvaluator
+from mowl.projection import TaxonomyProjector, Edge
+from mowl.evaluation import SubsumptionEvaluator
+from tqdm import trange, tqdm
+import torch as th
+import numpy as np
+import logging
+import json
 
-import torch
-from sklearn.metrics.pairwise import cosine_similarity
+logger = logging.getLogger(__name__)
+handler = logging.StreamHandler()
+logger.addHandler(handler)
+logger.setLevel(logging.INFO)
 
+class SubsumptionDataset(PathDataset):
+    @property
+    def evaluation_classes(self):
+        return self.classes, self.classes
 
-def load_ontology_dataset(train_path: str, valid_path: str) -> PathDataset:
-    """Load ontology files into mOWL dataset."""
-    print(f"Loading ontology from {train_path} and {valid_path}")
-    dataset = PathDataset(train_path, validation_path=valid_path)
-    return dataset
-
-
-def extract_subclass_pairs(dataset: PathDataset, split: str = 'validation') -> List[Tuple[str, str]]:
-    """Extract subclass-superclass pairs from the validation ontology."""
-    ontology = dataset.validation if split == 'validation' else dataset.ontology
-    pairs = []
-    
-    for axiom in ontology.getAxioms():
-        axiom_type = axiom.getAxiomType().getName()
-        
-        if axiom_type == "SubClassOf":
-            subclass = axiom.getSubClass()
-            superclass = axiom.getSuperClass()
-            
-            # Only consider named classes (not complex expressions)
-            if not subclass.isAnonymous() and not superclass.isAnonymous():
-                sub_iri = str(subclass.asOWLClass().getIRI())
-                super_iri = str(superclass.asOWLClass().getIRI())
-                pairs.append((sub_iri, super_iri))
-    
-    print(f"Extracted {len(pairs)} subclass-superclass pairs from {split} set")
-    return pairs
-
-
-def train_elembeddings(dataset: PathDataset, 
-                       embedding_dim: int = 50,
-                       epochs: int = 100,
-                       learning_rate: float = 0.001,
-                       batch_size: int = 128,
-                       margin: float = 0.1) -> ELEmbeddings:
-    """Train ELEmbeddings model on the dataset."""
-    print(f"\nTraining ELEmbeddings model...")
-    print(f"  Embedding dimension: {embedding_dim}")
-    print(f"  Epochs: {epochs}")
-    print(f"  Learning rate: {learning_rate}")
-    print(f"  Batch size: {batch_size}")
-    print(f"  Margin: {margin}")
-    
-    model = ELEmbeddings(
-        dataset,
-        embed_dim=embedding_dim,
-        learning_rate=learning_rate,
-        batch_size=batch_size,
-        epochs=epochs,
-        margin=margin
-    )
-    
-    model.train()
-    print("Training completed!")
-    
-    return model
-
-
-def get_class_embedding(model: ELEmbeddings, class_iri: str) -> Tuple:
-    """Get embedding vector and radius for a class IRI.
-    
-    Returns:
-        tuple: (center_embedding, radius) or (None, None) if not found
+class ELEmbeddings(EmbeddingELModel):
     """
-    try:
-        # ELEmbeddings stores class centers
-        center = model.class_embeddings[class_iri]
-        if torch.is_tensor(center):
-            center = center.detach().cpu().numpy()
-        
-        # ELEmbeddings also stores radii
-        radius = None
-        if hasattr(model, 'class_rad') and class_iri in model.class_rad:
-            radius = model.class_rad[class_iri]
-            if torch.is_tensor(radius):
-                radius = float(radius.detach().cpu().numpy())
-        
-        return center, radius
-    except (KeyError, AttributeError):
-        return None, None
+    Implementation based on [kulmanov2019]_.
 
-
-def compute_cosine_similarities(model: ELEmbeddings, 
-                                pairs: List[Tuple[str, str]]) -> List[float]:
-    """Compute cosine similarities for subclass-superclass pairs.
-    
-    Uses only cosine similarity between class center embeddings.
+    The idea of this paper is to embed EL by modeling ontology classes as :math:`n`-dimensional \
+    balls (:math:`n`-balls) and ontology object properties as transformations of those \
+    :math:`n`-balls. For each of the normal forms, there is a distance function defined that will \
+    work as loss functions in the optimization framework.
     """
-    similarities = []
-    missing_count = 0
+
     
-    for sub_iri, super_iri in pairs:
-        sub_center, _ = get_class_embedding(model, sub_iri)
-        super_center, _ = get_class_embedding(model, super_iri)
+    def __init__(self,
+                 dataset,
+                 embed_dim=50,
+                 margin=0,
+                 reg_norm=1,
+                 learning_rate=0.001,
+                 epochs=1000,
+                 batch_size=4096 * 8,
+                 model_filepath=None,
+                 device='cpu'
+                 ):
+        super().__init__(dataset, embed_dim, batch_size, extended=True, model_filepath=model_filepath)
+
+        self.margin = margin
+        self.reg_norm = reg_norm
+        self.learning_rate = learning_rate
+        self.epochs = epochs
+        self.device = device
+        self._loaded = False
+        self.extended = False
+        self.init_module()
+
+
+
+    def init_module(self):
+        self.module = ELEmModule(
+            len(self.class_index_dict),  # number of ontology classes
+            len(self.object_property_index_dict),  # number of ontology object properties
+            len(self.individual_index_dict),  # number of individuals
+            embed_dim=self.embed_dim,
+            margin=self.margin
+        ).to(self.device)
+
+
+
+
+
+
+    def train(self, epochs=None, validate_every=1):
+        logger.warning('You are using the default training method. If you want to use a cutomized training method (e.g., different negative sampling, etc.), please reimplement the train method in a subclass.')
+
+        points_per_dataset = {k: len(v) for k, v in self.training_datasets.items()}
+        string = "Training datasets: \n"
+        for k, v in points_per_dataset.items():
+            string += f"\t{k}: {v}\n"
+
+        logger.info(string)
+            
+        optimizer = th.optim.Adam(self.module.parameters(), lr=self.learning_rate)
+        best_loss = float('inf')
+
+        all_classes_ids = list(self.class_index_dict.values())
+        all_inds_ids = list(self.individual_index_dict.values())
         
-        if sub_center is not None and super_center is not None:
-            # Reshape for sklearn
-            sub_vec = sub_center.reshape(1, -1)
-            super_vec = super_center.reshape(1, -1)
-            
-            # Compute cosine similarity between centers
-            center_sim = cosine_similarity(sub_vec, super_vec)[0, 0]
-            similarities.append(float(center_sim))
-        else:
-            missing_count += 1
-    
-    if missing_count > 0:
-        print(f"Warning: {missing_count} pairs had missing embeddings")
-    
-    return similarities
-
-
-def find_optimal_threshold(similarities: List[float], 
-                           threshold_range: np.ndarray,
-                           target_mean_cos: float = 0.70) -> Tuple[float, Dict]:
-    """Find smallest threshold achieving target mean cosine similarity."""
-    print(f"\nSearching for optimal threshold (target mean_cos >= {target_mean_cos})")
-    
-    results = {}
-    optimal_threshold = None
-    
-    for tau in threshold_range:
-        # Filter similarities >= threshold
-        filtered = [s for s in similarities if s >= tau]
+        if epochs is None:
+            epochs = self.epochs
         
-        if len(filtered) > 0:
-            mean_cos = np.mean(filtered)
-            results[float(tau)] = {
-                'mean_cos': float(mean_cos),
-                'num_pairs': len(filtered),
-                'percentage': len(filtered) / len(similarities) * 100
-            }
-            
-            print(f"  τ = {tau:.2f}: mean_cos = {mean_cos:.4f}, "
-                  f"pairs = {len(filtered)}/{len(similarities)} ({results[float(tau)]['percentage']:.1f}%)")
-            
-            # Check if this threshold meets criterion
-            if mean_cos >= target_mean_cos and optimal_threshold is None:
-                optimal_threshold = float(tau)
+        for epoch in trange(epochs):
+            self.module.train()
+
+            train_loss = 0
+            loss = 0
+
+            for gci_name, gci_dataset in self.training_datasets.items():
+                if len(gci_dataset) == 0:
+                    continue
+
+                loss += th.mean(self.module(gci_dataset[:], gci_name))
+                if gci_name == "gci2":
+                    idxs_for_negs = np.random.choice(all_classes_ids, size=len(gci_dataset), replace=True)
+                    rand_index = th.tensor(idxs_for_negs).to(self.device)
+                    data = gci_dataset[:]
+                    neg_data = th.cat([data[:, :2], rand_index.unsqueeze(1)], dim=1)
+                    loss += th.mean(self.module(neg_data, gci_name, neg=True))
+
+                if gci_name == "object_property_assertion":
+                    idxs_for_negs = np.random.choice(all_inds_ids, size=len(gci_dataset), replace=True)
+                    rand_index = th.tensor(idxs_for_negs).to(self.device)
+                    data = gci_dataset[:]
+                    neg_data = th.cat([data[:, :2], rand_index.unsqueeze(1)], dim=1)
+                    loss += th.mean(self.module(neg_data, gci_name, neg=True))
+                    
+            loss += self.module.regularization_loss()
+                    
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            train_loss += loss.detach().item()
+
+            loss = 0
+
+            if (epoch + 1) % validate_every == 0:
+                if self.dataset.validation is not None:
+                    with th.no_grad():
+                        self.module.eval()
+                        valid_loss = 0
+                        gci2_data = self.validation_datasets["gci2"][:]
+                        loss = th.mean(self.module(gci2_data, "gci2"))
+                        valid_loss += loss.detach().item()
+
+
+                        if valid_loss < best_loss:
+                            best_loss = valid_loss
+                            th.save(self.module.state_dict(), self.model_filepath)
+                    print(f'Epoch {epoch+1}: Train loss: {train_loss} Valid loss: {valid_loss}')
+                else:
+                    print(f'Epoch {epoch+1}: Train loss: {train_loss}')
+
+
+ 
+
+
+
+    def eval_method(self, data):
+        return self.module.gci2_loss(data)
+
+
+
+
+
+
+    def get_embeddings(self):
+        self.init_module()
+
+        print('Load the best model', self.model_filepath)
+        self.load_best_model()
+                
+        ent_embeds = {
+            k: v for k, v in zip(self.class_index_dict.keys(),
+                                 self.module.class_embed.weight.cpu().detach().numpy())}
+        rel_embeds = {
+            k: v for k, v in zip(self.object_property_index_dict.keys(),
+                                 self.module.rel_embed.weight.cpu().detach().numpy())}
+        if self.module.ind_embed is not None:
+            ind_embeds = {
+                k: v for k, v in zip(self.individual_index_dict.keys(),
+                                     self.module.ind_embed.weight.cpu().detach().numpy())}
         else:
-            results[float(tau)] = {
-                'mean_cos': None,
-                'num_pairs': 0,
-                'percentage': 0.0
-            }
-            print(f"  τ = {tau:.2f}: No pairs meet threshold")
-    
-    return optimal_threshold, results
+            ind_embeds = None
+        return ent_embeds, rel_embeds, ind_embeds
 
 
-def save_results(output_path: str, 
-                 similarities: List[float],
-                 optimal_threshold: float,
-                 threshold_results: Dict,
-                 model_params: Dict):
-    """Save evaluation metrics to JSON file."""
-    
-    metrics = {
-        'model': 'ELEmbeddings',
-        'model_parameters': model_params,
-        'validation_metrics': {
-            'total_pairs': len(similarities),
-            'all_similarities': {
-                'mean': float(np.mean(similarities)),
-                'median': float(np.median(similarities)),
-                'std': float(np.std(similarities)),
-                'min': float(np.min(similarities)),
-                'max': float(np.max(similarities))
-            },
-            'optimal_threshold': optimal_threshold,
-            'threshold_analysis': threshold_results
-        }
-    }
-    
-    # Ensure output directory exists
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    
-    with open(output_path, 'w') as f:
-        json.dump(metrics, f, indent=2)
-    
-    print(f"\nResults saved to {output_path}")
 
+
+
+    def load_best_model(self):
+        self.init_module()
+        self.module.load_state_dict(th.load(self.model_filepath))
+        self.module.eval()
 
 def main():
-    # Configuration
-    TRAIN_PATH = "../train.ttl"
-    VALID_PATH = "../valid.ttl"
-    OUTPUT_PATH = "reports/mowl_metrics.json"
-    
-    # Model hyperparameters - Start with original values
-    EMBEDDING_DIM = 50
-    EPOCHS = 100
-    LEARNING_RATE = 0.001
-    BATCH_SIZE = 128
-    MARGIN = 0.1  # margin parameter
-    
-    # Threshold search parameters
-    THRESHOLD_MIN = 0.60
-    THRESHOLD_MAX = 0.80
-    THRESHOLD_STEP = 0.01
-    TARGET_MEAN_COS = 0.70
-    
-    print("=" * 60)
-    print("mOWL ELEmbeddings Training Script")
-    print("=" * 60)
-    
-    # Load dataset
-    dataset = load_ontology_dataset(TRAIN_PATH, VALID_PATH)
-    
-    # Extract validation pairs
-    validation_pairs = extract_subclass_pairs(dataset, split='validation')
-    
-    if len(validation_pairs) == 0:
-        print("Error: No subclass-superclass pairs found in validation set!")
-        return
-    
-    # Train model
-    model_params = {
-        'embedding_dim': EMBEDDING_DIM,
-        'epochs': EPOCHS,
-        'learning_rate': LEARNING_RATE,
-        'batch_size': BATCH_SIZE,
-        'margin': MARGIN
-    }
-    
-    model = train_elembeddings(
-        dataset,
-        embedding_dim=EMBEDDING_DIM,
-        epochs=EPOCHS,
-        learning_rate=LEARNING_RATE,
-        batch_size=BATCH_SIZE,
-        margin=MARGIN
+    dataset = SubsumptionDataset(
+    ontology_path = "../train.ttl",
+    validation_path = "../valid.ttl",
+    testing_path = "../valid.ttl"
+)
+
+    model = ELEmbeddings(
+        dataset = dataset,
+        embed_dim=30,
+        margin=0.02,
+        reg_norm=1,
+        learning_rate=0.001,
+        epochs=500,
+        batch_size=64,
+        model_filepath="reports/elembeddings_best.pt",
+        device='cpu'
+
     )
+
+    model.train(validate_every=1)
     
-    # Compute cosine similarities
-    print("\nComputing cosine similarities for validation pairs...")
-    similarities = compute_cosine_similarities(model, validation_pairs)
+
     
-    if len(similarities) == 0:
-        print("Error: No similarities could be computed!")
-        return
-    
-    print(f"Computed {len(similarities)} similarities")
-    print(f"  Mean: {np.mean(similarities):.4f}")
-    print(f"  Median: {np.median(similarities):.4f}")
-    print(f"  Std: {np.std(similarities):.4f}")
-    
-    # Find optimal threshold
-    threshold_range = np.arange(THRESHOLD_MIN, THRESHOLD_MAX + THRESHOLD_STEP, THRESHOLD_STEP)
-    optimal_threshold, threshold_results = find_optimal_threshold(
-        similarities,
-        threshold_range,
-        TARGET_MEAN_COS
+    evaluator = SubsumptionEvaluator(
+        dataset=dataset,
+        batch_size=64,
+        device ='cpu'
     )
-    
-    if optimal_threshold is not None:
-        print(f"\n✓ Optimal threshold found: τ = {optimal_threshold:.2f}")
-        print(f"  Mean cosine similarity: {threshold_results[optimal_threshold]['mean_cos']:.4f}")
-        print(f"  Pairs included: {threshold_results[optimal_threshold]['num_pairs']}")
-    else:
-        print(f"\n✗ No threshold in range [{THRESHOLD_MIN}, {THRESHOLD_MAX}] "
-              f"achieves mean_cos >= {TARGET_MEAN_COS}")
-        # Use the best threshold available
-        valid_thresholds = {k: v for k, v in threshold_results.items() 
-                           if v['mean_cos'] is not None}
-        if valid_thresholds:
-            best_tau = max(valid_thresholds.keys(), 
-                          key=lambda k: threshold_results[k]['mean_cos'])
-            optimal_threshold = best_tau
-            print(f"  Using best available threshold: τ = {optimal_threshold:.2f}")
-    
-    # Save results
-    save_results(OUTPUT_PATH, similarities, optimal_threshold, 
-                threshold_results, model_params)
-    
-    print("\n" + "=" * 60)
-    print("Training and evaluation completed successfully!")
-    print("=" * 60)
+
+    evaluation_model = model.module
+    metrics = evaluator.evaluate(
+        evaluation_model = evaluation_model,
+        testing_ontology = dataset.validation,
+        filter_ontologies = [dataset.ontology], 
+        mode = "head_centric"
+        )   
+
+    print("Evaluation Metrics:")
+    for metric_name, value in metrics.items():
+        print(f"  {metric_name}: {value}")
+
+    with open("reports/mowl_metrics.json", "w") as f:
+        json.dump(metrics, f, indent=2)
+    print("Metrics saved to reports/mowl_metrics.json")
+
 
 
 if __name__ == "__main__":

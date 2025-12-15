@@ -1,0 +1,5 @@
+Total classes in TTL: 572
+Total IRIs in CSV: 572
+Missing in CSV (0):
+
+Extra in CSV (0):
