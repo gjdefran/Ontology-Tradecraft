@@ -168,7 +168,7 @@ def make_non_self_referential(def_text: str, class_iri: URIRef) -> str:
             needle_used = def_text[i:i+len(needle)]  # preserve original casing in that slice
             break
     if split_idx == -1:
-        # No " is a / is an " head/body split; return as-is (we won't rewrite free-text defs)
+        # No " is a / is an " head/body split; return as-is (we will not rewrite free-text defs)
         return def_text
 
     # Keep head + delimiter, scrub the body
